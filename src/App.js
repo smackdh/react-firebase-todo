@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import List from "./Components/Todo/ItemList/List";
 import Input from "./Components/Todo/UserInput/Input";
 
@@ -9,10 +9,12 @@ const DUMMY_LIST = [
 ];
 
 function App() {
+  const [items, setItems] = useState(DUMMY_LIST);
+
   return (
     <Fragment>
       <Input />
-      <List items={DUMMY_LIST} />
+      <List items={items} />
     </Fragment>
   );
 }

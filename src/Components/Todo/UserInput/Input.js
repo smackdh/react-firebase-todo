@@ -4,6 +4,7 @@ const Input = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  //HANDLERS
   const setTitleHandler = (event) => {
     setTitle(event.target.value);
   };
@@ -17,6 +18,8 @@ const Input = (props) => {
 
     console.log(`New Task Added\n ${title}: ${description}`);
   };
+
+  //OUTPUT
 
   return (
     <div>
