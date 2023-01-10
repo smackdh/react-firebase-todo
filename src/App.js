@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import List from "./Components/List";
+import List from "./Components/Todo/ItemList/List";
+import Input from "./Components/Todo/UserInput/Input";
 
 const DUMMY_LIST = [
   { id: 1, title: "Task 1", text: "Some gibberish" },
@@ -11,6 +12,7 @@ function App() {
   return (
     <Fragment>
       <List items={DUMMY_LIST} />
+      <Input />
     </Fragment>
   );
 }

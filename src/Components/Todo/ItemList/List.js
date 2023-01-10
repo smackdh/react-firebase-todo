@@ -2,9 +2,9 @@ const List = (props) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <li>
+        <li key={item.id}>
           <h1>{item.title}</h1>
-          <hp>{item.text}</hp>
+          <p>{item.text}</p>
         </li>
       ))}
     </ul>
