@@ -12,20 +12,27 @@ function App() {
   const [itemsList, setItemsList] = useState(DUMMY_LIST);
 
   const addItemHandler = (item) => {
-    setItemsList((oldItemsList) => {
-      const updatedItemsList = [...oldItemsList];
+    setItemsList((previousItems) => {
+      const updatedItemsList = [...previousItems];
       updatedItemsList.unshift({
         id: Math.random().toString(),
         title: item.title,
         description: item.description,
       });
+      return updatedItemsList;
     });
   };
+
+  let content = <List items={[]} />;
+
+  if (itemsList.length > 0) {
+    content = <List items={itemsList} />;
+  }
 
   return (
     <Fragment>
       <Input onAddItem={addItemHandler} />
-      <List items={itemsList} />
+      <section>{content}</section>
     </Fragment>
   );
 }
