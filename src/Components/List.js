@@ -1,13 +1,7 @@
-const DUMMY_LIST = [
-  { id: 1, title: "Task 1", text: "Some gibberish" },
-  { id: 2, title: "Task 2", text: "Some gibberish" },
-  { id: 3, title: "Task 3", text: "Some gibberish" },
-];
-
-const List = () => {
+const List = (props) => {
   return (
     <ul>
-      {DUMMY_LIST.map((item) => (
+      {props.items.map((item) => (
         <li>
           <h1>{item.title}</h1>
           <hp>{item.text}</hp>
