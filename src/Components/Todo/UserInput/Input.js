@@ -15,8 +15,14 @@ const Input = (props) => {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-
     console.log(`New Task Added\n ${title}: ${description}`);
+
+    const data = {
+      title: title,
+      description: description,
+    };
+
+    props.onAddItem(data);
   };
 
   //OUTPUT
