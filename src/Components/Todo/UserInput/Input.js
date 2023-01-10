@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Input = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
   //HANDLERS
   const setTitleHandler = (event) => {
@@ -13,9 +14,21 @@ const Input = (props) => {
     setDescription(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log(`New Task Added\n ${title}: ${description}`);
+
+    if (title.trim().length === 0 || description.trim().length === 0) {
+      setError({
+        title: "Invalid Input",
+        message: "Please input a task title and description.",
+      });
+      return;
+    }
 
     const data = {
       title: title,
@@ -29,6 +42,7 @@ const Input = (props) => {
 
   return (
     <div>
+      {error && <p>{h1.title}</p>}
       <form>
         <label htmlFor="title">Title</label>
         <input
