@@ -11,8 +11,8 @@ const DUMMY_LIST = [
 function App() {
   return (
     <Fragment>
-      <List items={DUMMY_LIST} />
       <Input />
+      <List items={DUMMY_LIST} />
     </Fragment>
   );
 }
