@@ -29,10 +29,14 @@ function App() {
     });
   };
 
+  const toggleCompleted = (id) => {
+    console.log(itemsList[0]);
+  };
+
   let content = <List removeItem={removeItemHandler} items={[]} />;
 
   if (itemsList.length > 0) {
-    content = <List items={itemsList} />;
+    content = <List items={itemsList} removeItem={removeItemHandler} />;
   }
 
   return (
