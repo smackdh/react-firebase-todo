@@ -34,7 +34,8 @@ const Input = (props) => {
       title: title,
       description: description,
     };
-
+    setTitle("");
+    setDescription("");
     props.onAddItem(data);
   };
 
