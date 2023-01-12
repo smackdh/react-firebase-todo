@@ -4,7 +4,11 @@ const Item = (props) => {
       <li>
         <h1>{props.title}</h1>
         <p>{props.description}</p>
-        <input type="checkbox" checked={props.completed} />
+        <input
+          type="checkbox"
+          checked={props.completed}
+          onChange={props.toggleCompleted}
+        />
       </li>
     </div>
   );

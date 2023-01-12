@@ -8,8 +8,9 @@ const List = (props, removeItem) => {
           id={item.id}
           title={item.title}
           description={item.description}
-          done={item.completed}
+          completed={item.completed}
           key={item.id}
+          toggleCompleted={props.toggle}
         />
       ))}
     </ul>

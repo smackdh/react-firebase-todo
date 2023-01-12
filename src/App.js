@@ -30,13 +30,21 @@ function App() {
   };
 
   const toggleCompleted = (id) => {
-    console.log(itemsList[0]);
+    console.log("beep");
   };
 
-  let content = <List removeItem={removeItemHandler} items={[]} />;
+  let content = (
+    <List removeItem={removeItemHandler} items={[]} toggle={toggleCompleted} />
+  );
 
   if (itemsList.length > 0) {
-    content = <List items={itemsList} removeItem={removeItemHandler} />;
+    content = (
+      <List
+        items={itemsList}
+        removeItem={removeItemHandler}
+        toggle={toggleCompleted}
+      />
+    );
   }
 
   return (
