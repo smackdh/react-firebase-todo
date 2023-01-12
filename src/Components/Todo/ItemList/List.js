@@ -1,19 +1,16 @@
+import Item from "../Item/Item";
+
 const List = (props, removeItem) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <li key={item.id}>
-          <h1>{item.title}</h1>
-          <p>{item.description}</p>
-          <input type="checkbox" />
-          <button
-            type="button"
-            aria-pressed="true"
-            onClick={() => removeItem(item.id)}
-          >
-            Remove item
-          </button>
-        </li>
+        <Item
+          id={item.id}
+          title={item.title}
+          description={item.description}
+          done={item.completed}
+          key={item.id}
+        />
       ))}
     </ul>
   );
