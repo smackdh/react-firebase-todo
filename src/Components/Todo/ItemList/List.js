@@ -11,6 +11,7 @@ const List = (props, removeItem) => {
           completed={item.completed}
           key={item.id}
           toggleCompleted={props.toggle}
+          removeItem={props.removeItem}
         />
       ))}
     </ul>

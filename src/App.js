@@ -30,7 +30,14 @@ function App() {
   };
 
   const toggleCompleted = (id) => {
-    console.log("beep");
+    const updatedItemList = itemsList.map((item) => {
+      if (id === item.id) {
+        return { ...item, completed: !item.completed };
+      }
+      return item;
+    });
+    console.log(id);
+    setItemsList(updatedItemList);
   };
 
   let content = (

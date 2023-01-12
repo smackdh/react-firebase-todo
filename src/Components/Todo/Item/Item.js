@@ -7,8 +7,11 @@ const Item = (props) => {
         <input
           type="checkbox"
           checked={props.completed}
-          onChange={props.toggleCompleted}
+          onChange={() => props.toggleCompleted(props.id)}
         />
+        <button type="button" onClick={props.removeItem}>
+          Delete
+        </button>
       </li>
     </div>
   );
