@@ -25,7 +25,7 @@ const Input = (props) => {
     if (title.trim().length === 0 || description.trim().length === 0) {
       setError({
         title: "Invalid Input",
-        message: "Please input a task title and description.",
+        message: "Please input a task title and description",
       });
       return;
     }
@@ -42,7 +42,12 @@ const Input = (props) => {
 
   return (
     <div>
-      {error && <p>{h1.title}</p>}
+      {error && (
+        <div>
+          <h3>{error.title}</h3>
+          <p>{error.message}</p>
+        </div>
+      )}
       <form>
         <label htmlFor="title">Title</label>
         <input

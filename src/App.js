@@ -3,13 +3,19 @@ import List from "./Components/Todo/ItemList/List";
 import Input from "./Components/Todo/UserInput/Input";
 
 const DUMMY_LIST = [
-  { id: 1, title: "Task 1", description: "Some gibberish" },
-  { id: 2, title: "Task 2", description: "Some gibberish" },
-  { id: 3, title: "Task 3", description: "Some gibberish" },
+  { id: 1, title: "Task 1", description: "Some gibberish", completed: false },
+  { id: 2, title: "Task 2", description: "Some gibberish", completed: false },
+  { id: 3, title: "Task 3", description: "Some gibberish", completed: false },
 ];
 
 function App() {
   const [itemsList, setItemsList] = useState(DUMMY_LIST);
+
+  function removeItemHandler(item) {
+    const updatedItemsList = [...itemsList];
+    updatedItemsList.splice(item, 1);
+    setItemsList(updatedItemsList);
+  }
 
   const addItemHandler = (item) => {
     setItemsList((previousItems) => {
@@ -23,7 +29,7 @@ function App() {
     });
   };
 
-  let content = <List items={[]} />;
+  let content = <List removeItem={removeItemHandler} items={[]} />;
 
   if (itemsList.length > 0) {
     content = <List items={itemsList} />;
