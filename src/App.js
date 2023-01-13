@@ -29,7 +29,7 @@ function App() {
     });
   };
 
-  const toggleCompleted = (id) => {
+  const toggleCompletedHandler = (id) => {
     const updatedItemList = itemsList.map((item) => {
       if (id === item.id) {
         return { ...item, completed: !item.completed };
@@ -40,16 +40,31 @@ function App() {
     setItemsList(updatedItemList);
   };
 
+  const editItemHandler = (id, newTitle) => {
+    const updatedItemList = itemsList.map((item) => {
+      if (id === item.id) {
+        return { ...item, title: newTitle };
+      }
+      return item;
+    });
+    setItemsList(updatedItemList);
+  };
+
   let content = (
-    <List removeItem={removeItemHandler} items={[]} toggle={toggleCompleted} />
+    <List
+      removeItem={removeItemHandler}
+      items={[]}
+      toggle={toggleCompletedHandler}
+    />
   );
 
   if (itemsList.length > 0) {
     content = (
       <List
         items={itemsList}
-        removeItem={removeItemHandler}
-        toggle={toggleCompleted}
+        remove={removeItemHandler}
+        toggle={toggleCompletedHandler}
+        edit={editItemHandler}
       />
     );
   }

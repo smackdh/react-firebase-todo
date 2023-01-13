@@ -10,9 +10,9 @@ const List = (props, removeItem) => {
           description={item.description}
           completed={item.completed}
           key={item.id}
-          toggleCompleted={props.toggle}
-          removeItem={props.removeItem}
-          editItem={props.editItem}
+          toggleItemCompleted={props.toggle}
+          removeItem={props.remove}
+          editItem={props.edit}
         />
       ))}
     </ul>

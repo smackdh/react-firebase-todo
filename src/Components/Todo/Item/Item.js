@@ -11,6 +11,9 @@ const Item = (props) => {
 
   function saveHandler(e) {
     e.preventDefault();
+    props.editItem(props.id, newTitle);
+    setnewTitle("");
+    setisEditing(false);
   }
 
   const viewTemplate = (
@@ -20,7 +23,7 @@ const Item = (props) => {
       <input
         type="checkbox"
         checked={props.completed}
-        onChange={() => props.toggleCompleted(props.id)}
+        onChange={() => props.toggleItemCompleted(props.id)}
       />
       <button type="button" onClick={props.removeItem}>
         Delete
