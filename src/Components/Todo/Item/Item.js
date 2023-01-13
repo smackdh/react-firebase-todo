@@ -5,8 +5,12 @@ const Item = (props) => {
   const [newTitle, setnewTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  function updateHandler(e) {
-    console.log(e);
+  function titleChangeHandler(e) {
+    console.log(e.target.value);
+  }
+
+  function saveHandler(e) {
+    e.preventDefault();
   }
 
   const viewTemplate = (
@@ -30,9 +34,14 @@ const Item = (props) => {
   const editTemplate = (
     <li>
       <h1 htmlFor={props.id}>{props.title}</h1>
-      <input id={props.id} type="text" />
+      <input
+        id={props.id}
+        type="text"
+        value={newTitle}
+        onChange={titleChangeHandler}
+      />
       <p>Editing</p>
-      <button type="button" onClick={updateHandler}>
+      <button type="button" onClick={saveHandler}>
         Save
       </button>
       <button type="button" onClick={() => setisEditing(false)}>
