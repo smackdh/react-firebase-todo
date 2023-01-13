@@ -36,7 +36,7 @@ function App() {
       }
       return item;
     });
-    console.log(id);
+    console.log(`This is the ID: ${id}`);
     setItemsList(updatedItemList);
   };
 

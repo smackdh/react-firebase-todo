@@ -2,6 +2,12 @@ import React, { useState } from "react";
 
 const Item = (props) => {
   const [isEditing, setisEditing] = useState(false);
+  const [newTitle, setnewTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  function updateHandler(e) {
+    console.log(e);
+  }
 
   const viewTemplate = (
     <li>
@@ -12,7 +18,9 @@ const Item = (props) => {
         checked={props.completed}
         onChange={() => props.toggleCompleted(props.id)}
       />
-
+      <button type="button" onClick={props.removeItem}>
+        Delete
+      </button>
       <button type="button" onClick={() => setisEditing(true)}>
         Edit
       </button>
@@ -21,10 +29,11 @@ const Item = (props) => {
 
   const editTemplate = (
     <li>
-      <h1>Editing</h1>
+      <h1 htmlFor={props.id}>{props.title}</h1>
+      <input id={props.id} type="text" />
       <p>Editing</p>
-      <button type="button" onClick={props.removeItem}>
-        Delete
+      <button type="button" onClick={updateHandler}>
+        Save
       </button>
       <button type="button" onClick={() => setisEditing(false)}>
         Cancel
