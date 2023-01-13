@@ -3,16 +3,22 @@ import React, { useState } from "react";
 const Item = (props) => {
   const [isEditing, setisEditing] = useState(false);
   const [newTitle, setnewTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [newDescription, setNewDescription] = useState("");
 
   function titleChangeHandler(e) {
     setnewTitle(e.target.value);
   }
 
+  function descriptionChangeHandler(e) {
+    setNewDescription(e.target.value);
+    console.log(e.target.value);
+  }
+
   function saveHandler(e) {
     e.preventDefault();
-    props.editItem(props.id, newTitle);
+    props.editItem(props.id, newTitle, newDescription);
     setnewTitle("");
+    setNewDescription("");
     setisEditing(false);
   }
 
@@ -43,7 +49,13 @@ const Item = (props) => {
         value={newTitle}
         onChange={titleChangeHandler}
       />
-      <p>Editing</p>
+      <p htmlFor={props.id}>{props.description}</p>
+      <input
+        id={props.id}
+        type="text"
+        value={newDescription}
+        onChange={descriptionChangeHandler}
+      />
       <button type="button" onClick={saveHandler}>
         Save
       </button>

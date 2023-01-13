@@ -40,10 +40,10 @@ function App() {
     setItemsList(updatedItemList);
   };
 
-  const editItemHandler = (id, newTitle) => {
+  const editItemHandler = (id, newTitle, newDescription) => {
     const updatedItemList = itemsList.map((item) => {
       if (id === item.id) {
-        return { ...item, title: newTitle };
+        return { ...item, title: newTitle, description: newDescription };
       }
       return item;
     });
