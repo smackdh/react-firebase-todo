@@ -2,12 +2,6 @@ import React, { Fragment, useState, useCallback, useEffect } from "react";
 import List from "./Components/Todo/ItemList/List";
 import Input from "./Components/Todo/UserInput/Input";
 
-const DUMMY_LIST = [
-  { id: 1, title: "Task 1", description: "Some gibberish", completed: false },
-  { id: 2, title: "Task 2", description: "Some gibberish", completed: false },
-  { id: 3, title: "Task 3", description: "Some gibberish", completed: false },
-];
-
 const url = "https://react-http-c8445-default-rtdb.firebaseio.com/items.json";
 
 function App() {
@@ -46,8 +40,6 @@ function App() {
     setItemsList(updatedItemsList);
   }
 
-  // add fetch on first load with useEffect.
-
   async function addItemHandler(item) {
     const response = await fetch(url, {
       method: "POST",
@@ -56,15 +48,18 @@ function App() {
     });
     const data = await response.json();
 
-    // setItemsList((previousItems) => {
-    //   const updatedItemsList = [...previousItems];
-    //   updatedItemsList.unshift({
-    //     id: Math.random().toString(),
-    //     title: item.title,
-    //     description: item.description,
-    //   });
-    //   return updatedItemsList;
-    // });
+    const loadedItems = [...itemsList];
+
+    for (const key in data) {
+      loadedItems.push({
+        id: key,
+        title: data[key].title,
+        description: data[key].description,
+        completed: data[key].completed,
+      });
+    }
+    setItemsList(loadedItems);
+    fetchItemsHandler();
   }
 
   const toggleCompletedHandler = (id) => {
