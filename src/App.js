@@ -16,7 +16,6 @@ function App() {
       }
 
       const data = await response.json();
-      console.log(`This is the data:\n${data}`);
 
       const loadedItems = [];
 
@@ -34,10 +33,16 @@ function App() {
     }
   }, []);
 
-  function removeItemHandler(item) {
-    const updatedItemsList = [...itemsList];
-    updatedItemsList.splice(item, 1);
+  async function removeItemHandler(itemId) {
+    const updatedItemsList = itemsList.filter((item) => item.id !== itemId);
     setItemsList(updatedItemsList);
+    const deleteResponse = await fetch(
+      `https://react-http-c8445-default-rtdb.firebaseio.com/items/${itemId}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    fetchItemsHandler();
   }
 
   async function addItemHandler(item) {
@@ -71,6 +76,7 @@ function App() {
     });
     console.log(`This is the ID: ${id}`);
     setItemsList(updatedItemList);
+    // fetchItemsHandler();
   };
 
   const editItemHandler = (id, newTitle, newDescription) => {
@@ -89,7 +95,7 @@ function App() {
 
   let content = (
     <List
-      removeItem={removeItemHandler}
+      remove={removeItemHandler}
       items={[]}
       toggle={toggleCompletedHandler}
     />
