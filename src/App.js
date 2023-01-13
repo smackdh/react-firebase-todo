@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import List from "./Components/Todo/ItemList/List";
 import Input from "./Components/Todo/UserInput/Input";
 
@@ -46,17 +46,26 @@ function App() {
     setItemsList(updatedItemsList);
   }
 
-  const addItemHandler = (item) => {
-    setItemsList((previousItems) => {
-      const updatedItemsList = [...previousItems];
-      updatedItemsList.unshift({
-        id: Math.random().toString(),
-        title: item.title,
-        description: item.description,
-      });
-      return updatedItemsList;
+  // add fetch on first load with useEffect.
+
+  async function addItemHandler(item) {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: { "Content-type": "application/json" },
     });
-  };
+    const data = await response.json();
+
+    // setItemsList((previousItems) => {
+    //   const updatedItemsList = [...previousItems];
+    //   updatedItemsList.unshift({
+    //     id: Math.random().toString(),
+    //     title: item.title,
+    //     description: item.description,
+    //   });
+    //   return updatedItemsList;
+    // });
+  }
 
   const toggleCompletedHandler = (id) => {
     const updatedItemList = itemsList.map((item) => {
@@ -78,6 +87,10 @@ function App() {
     });
     setItemsList(updatedItemList);
   };
+
+  useEffect(() => {
+    fetchItemsHandler();
+  }, [fetchItemsHandler]);
 
   let content = (
     <List
