@@ -105,7 +105,7 @@ function App() {
     content = (
       <List
         items={itemsList}
-        remove={removeItemHandler}
+        remove={(id) => removeItemHandler(id)}
         toggle={toggleCompletedHandler}
         edit={editItemHandler}
       />
