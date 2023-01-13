@@ -6,7 +6,7 @@ const Item = (props) => {
   const [description, setDescription] = useState("");
 
   function titleChangeHandler(e) {
-    console.log(e.target.value);
+    setnewTitle(e.target.value);
   }
 
   function saveHandler(e) {
