@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import List from "./Components/Todo/ItemList/List";
 import Input from "./Components/Todo/UserInput/Input";
 
@@ -8,8 +8,37 @@ const DUMMY_LIST = [
   { id: 3, title: "Task 3", description: "Some gibberish", completed: false },
 ];
 
+const url = "https://react-http-c8445-default-rtdb.firebaseio.com/items.json";
+
 function App() {
-  const [itemsList, setItemsList] = useState(DUMMY_LIST);
+  const [itemsList, setItemsList] = useState([]);
+
+  const fetchItemsHandler = useCallback(async () => {
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(console.log("Well fuck..."));
+      }
+
+      const data = await response.json();
+      console.log(`This is the data:\n${data}`);
+
+      const loadedItems = [];
+
+      for (const key in data) {
+        loadedItems.push({
+          id: key,
+          title: data[key].title,
+          description: data[key].description,
+          completed: data[key].description,
+        });
+      }
+      setItemsList(loadedItems);
+    } catch (error) {
+      console.log("God damn it...");
+    }
+  }, []);
 
   function removeItemHandler(item) {
     const updatedItemsList = [...itemsList];
